@@ -2,7 +2,7 @@
 session_start();
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pr-br">
 
 <head>
     <meta charset="UTF-8">
@@ -14,9 +14,24 @@ session_start();
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <title>Cadastro de Pessoa</title>
+
+    <script>
+
+        function dataMax() {
+            let dataAtual = new Date(); //pega a data atual
+            let dia = dataAtual.getDate(); //pega o dia'
+            let mes = dataAtual.getMonth() + 1; //pega o mês do ano (0-11)
+            let ano = dataAtual.getFullYear(); //pega o ano
+            let data = ano + "-" + mes + "-" + dia; //formato 2021-12-13           
+            document.getElementById("dataNasc").max = data;
+        }
+
+    </script>
+
+
 </head>
 
-<body style="margin: 20px;">
+<body style="margin: 20px;" onload="dataMax();">
     <?php
     //verifica se a sessão foi iniciada
     if (isset($_SESSION["usuario"])) {
@@ -25,6 +40,7 @@ session_start();
         if ($_SESSION["tipo"] == 'A') {
     ?>
             <h2 class="text-center mb-1 mt-2">CADASTRO DE PESSOA</h2>
+            <hr>
             <form action="inserirPessoa.php" method="post">
                 <div class="form-group row">
                     <label class="col-sm-2 font-weight-bold col-form-label text-right" for="txtNome">Nome</label>
@@ -41,14 +57,15 @@ session_start();
                 </div>
 
                 <div class="form-group row">
-                    <label class="col-sm-2 font-weight-bold col-form-label text-right" for="txtIdade">Idade</label>
-                    <div class="col-sm-10">
-                        <input class="form-control" type="number" min="0" name="txtIdade" required placeholder="Digite a idade">
+                    <label class="col-sm-2 font-weight-bold col-form-label text-right" for="dataNasc">Data de Nascimento</label>
+                    <div class="col-sm-2">
+                        <input class="form-control" type="date" name="dataNasc" id="dataNasc" required>
                     </div>
                 </div>
+
                 <div class="form-group row">
                     <label class="col-sm-2 font-weight-bold col-form-label text-right" for="ddlEstCivil">Estado Civil</label>
-                    <div class="col-sm-10">
+                    <div class="col-sm-2">
                         <select class="form-control" name="ddlEstCivil" id="ddlEstCivil">
                             <?php
                             //incluir o arquivo de conexão
@@ -79,24 +96,33 @@ session_start();
                         <input class="radio-inline" type="radio" name="radioSexo" value="Masculino">Masculino
                     </div>
                 </div>
-                <div class="text-right">
-                    <input class="btn btn-primary" type="submit" name="btnSalvar" value="Salvar">
-                    <input class="btn btn-warning" type="reset" name="btnCancelar" value="Cancelar">
+                <div class="form-group row">
+                    <label class="col-sm-2"></label>
+
+                    <div class="col-sm-10">
+                        <input class="btn btn-primary " type="submit" value="Cadastrar" onclick="validarSenha()">
+                        <input class="btn btn-warning" type="reset" value="Limpar">
+                    </div>
                 </div>
             </form>
 
         <?php
         } else {
-            echo "Usuário não autorizado";
+        ?>
+            <div class="alert alert-warning">
+                <p>Usuário não autorizado!</p>
+                <p>Entre em contato com o administrador do sistema.</p>
+            </div>
+
+        <?php
         }
     } else {
-        echo "Usuário não autenticado";
         ?>
-        <a href="index.php">Se identifique aqui</a>
-    <?php
-
-    }
-    ?>
+        <div class="alert alert-warning">
+            <p>Usuário não autenticado!</p>
+            <a href="index.php">Se identifique aqui</a>
+        </div>
+    <?php } ?>
 </body>
 
 </html>

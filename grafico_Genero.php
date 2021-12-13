@@ -43,7 +43,7 @@ session_start();
             );
 
             var options = {
-                'title': 'Quantidade de pessoas por sexo',
+                //'title': 'Quantidade de pessoas por sexo',
                 'width': 900,
                 'height': 500,
                 is3D: true
@@ -56,7 +56,8 @@ session_start();
     </script>
 </head>
 
-<body>
+<body style="margin: 20px;">
+    
     <?php
     //verifica se foi iniciada a seção do usuário
     if (isset($_SESSION["usuario"])) {
@@ -65,6 +66,7 @@ session_start();
         //inclui o script de boas-vindas e menu
         include_once("menu.php");
         ?>
+        <h2 class="text-center">GRÁFICO DE QUANTIDADE PESSOAS POR GÊNERO</h2>
         <div id="chart_div"></div>
     <?php
     } else {

@@ -1,5 +1,5 @@
 <?php
-    include_once("conexao.php");
+    require_once("conexao.php");
     //iniciar a sessão
     session_start();
     //recebe os dados do form login
@@ -17,7 +17,7 @@
         $_SESSION["usuario"] = $dados_usuario["user"];
         $_SESSION["nome"] = $dados_usuario["name"]; 
         $_SESSION["tipo"] = $dados_usuario["type"];
-        header("location: cadUsuario.php");
+        header("location: selecionarPessoa.php");
     }else{ //se houver algum erro no login
         $_SESSION["erro"] = "Erro";
         ?>

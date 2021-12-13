@@ -28,7 +28,6 @@ session_start();
     </style>
 
     <script text="text/javascript">
-
         $(document).ready(function() {
             //quando preferir a pesquisa digitando na caixa de texto
             //$("#pesquisa").keyup(function(e) {
@@ -50,7 +49,7 @@ session_start();
 
                 //Envia por AJAX pelo metodo post, a pequisa para o arquivo 'busca.php'
                 //O paremetro 'retorna' é responsável por recuperar o que vem do arquivo 'busca.php' e exibir os resultados na tela
-                $.post('buscaPessoa_jQuery.php', dados, function(retorna) {
+                $.post('buscarPessoa_jQuery.php', dados, function(retorna) {
                     $(".resultados").html(retorna);
                 });
 
@@ -88,18 +87,15 @@ session_start();
         </form>
 
         <div class="resultados">
-            <!--Os dados da busca efetuada pelo aquivo buscaPessoa.php, serão exibidos aqui-->
+            <!--Os dados da busca efetuada pelo aquivo buscarPessoa.php, serão exibidos aqui-->
         </div>
-    <?php
-    } else {
-        echo "Usuário não autenticado!";
-    ?>
-        <a href="index.php">Se identifique aqui</a>
-    <?php
-
-    }
-
-    ?>
+        }else {
+        ?>
+        <div class="alert alert-warning">
+            <p>Usuário não autenticado!</p>
+            <a href="index.php">Se identifique aqui</a>
+        </div>
+    <?php } ?>
 </body>
 
 </html>

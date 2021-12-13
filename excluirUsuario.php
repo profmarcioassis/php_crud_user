@@ -1,17 +1,17 @@
 <?php
 include 'conexao.php';
 
-echo $_GET['idUsuario'];
-if(is_numeric($_GET["idUsuario"])){
-    $SQL = "DELETE FROM tbuser WHERE iduser = ".$_GET["idUsuario"];
+echo $_GET['iduser'];
+if(is_numeric($_GET["iduser"])){
+    $SQL = "DELETE FROM tbuser WHERE iduser = ".$_GET["iduser"];
     //echo $SQL;
-    if ($con->query($SQL) === TRUE) {
+    if ($conn->query($SQL) === TRUE) {
         echo "<script>alert('Registro excluído com sucesso!');</script>";
-        echo "<script>window.location = 'listarUsuario.php';</script>";
+        echo "<script>window.location = 'selecionarUsuario.php';</script>";
     }
     else{
     	echo "<script>('Erro: '". $con->error."');</script>";
-        echo "<script>window.location = 'listarUsuario.php';</script>";	
+        echo "<script>window.location = 'selecionarUsuario.php';</script>";	
     }
 }
 ?>

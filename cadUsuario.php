@@ -35,6 +35,9 @@ session_start();
                 return true;
             }
         }
+
+        
+
     </script>
 </head>
 
@@ -47,6 +50,7 @@ session_start();
         if ($_SESSION["tipo"] == 'A') {
     ?>
             <h2 class="text-center mb-1 mt-2">CADASTRO DE USUÁRIO</h2>
+            <hr>
             <form name="frmCadUsuario" method="POST" action="inserirUsuario.php">
                 <div class="form-group row">
                     <label class="col-sm-2 font-weight-bold col-form-label text-right" for="txtNome">Nome: </label>
@@ -94,24 +98,47 @@ session_start();
                         <textarea class="form-control" name="txtObs" id="txtObs" rows="5" cols="60" placeholder="Observação"></textarea>
                     </div>
                 </div>
-                <div class="text-right">
-                    <input class="btn btn-primary " type="submit" value="Cadastrar" onclick="validarSenha()">
-                    <input class="btn btn-warning" type="reset" value="Limpar">
+                <div class="form-group row">
+                    <label class="col-sm-2"></label>
+
+                    <div class="col-sm-10">
+                        <input class="btn btn-primary " type="submit" value="Cadastrar" onclick="validarSenha()">
+                        <input class="btn btn-warning" type="reset" value="Limpar">
+                    </div>
                 </div>
             </form>
 
         <?php
         } else {
-            echo "Usuário não autorizado";
+        ?>
+            <div class="alert alert-warning">
+                <p>Usuário não autorizado!</p>
+                <p>Entre em contato com o administrador do sistema.</p>
+            </div>
+
+        <?php
         }
     } else {
-        echo "Usuário não autenticado";
         ?>
-        <a href="index.php">Se identifique aqui</a>
-    <?php
+        <div class="alert alert-warning">
+            <p>Usuário não autenticado!</p>
+            <a href="index.php">Se identifique aqui</a>
+        </div>
+    <?php } ?>
+    <script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script>
+    <script type="text/javascript">
+        bkLib.onDomLoaded(function() {
+            nicEditors.allTextAreas()
+        }); // convert all text areas to rich text editor on that page
 
-    }
-    ?>
+        bkLib.onDomLoaded(function() {
+            new nicEditor().panelInstance('txtObs');
+        }); // convert text area with id area1 to rich text editor.
+
+        bkLib.onDomLoaded(function() {
+            //new nicEditor({fullPanel : true}).panelInstance('txtObs');
+        }); // convert text area with id area2 to rich text editor with full panel.
+    </script>
 </body>
 
 </html>

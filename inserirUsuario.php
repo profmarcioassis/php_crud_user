@@ -19,7 +19,7 @@ $SQL .= " VALUES('" . utf8_decode($nome) . "', '$usuario','$email', '" . md5($se
 // se a consulta foi realizada com sucesso
 if ($conn->query($SQL) === TRUE) {
     echo "<script>alert('Registro inserido com sucesso.');</script>";
-    echo "<script>window.location = 'cadUsuario.php';</script>";
+    echo "<script>window.location = 'selecionarUsuario.php';</script>";
 } else {
     echo '<script>alert("Erro ao inserir o registro: ' . $conn->error . '");</script>';
     //echo $con->error;

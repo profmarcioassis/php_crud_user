@@ -5,13 +5,13 @@
     //receber os dados que veio do form via POST
     $nome = $_POST["txtNome"];
     $sobrenome = $_POST["txtSobreNome"];
-    $idade = $_POST["txtIdade"];
+    $datanasc = $_POST["dataNasc"];
     $idestcivil = $_POST["ddlEstCivil"];
     $sexo = $_POST["radioSexo"];
         
     //criar o comando sql do insert
-    $sql = "INSERT INTO tbpessoa (nomePessoa, sobrenomePessoa, idadePessoa, idEstCivil, Sexo)
-            VALUES ('$nome', '$sobrenome', $idade, $idestcivil, '$sexo')";
+    $sql = "INSERT INTO tbpessoa (nomePessoa, sobrenomePessoa, dataNasc, idEstCivil, Sexo)
+            VALUES ('$nome', '$sobrenome', '$datanasc', $idestcivil, '$sexo')";
     
     //echo $sql;
 
