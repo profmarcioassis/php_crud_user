@@ -19,41 +19,32 @@ session_start();
     <title>Lista de Pessoas</title>
 
     <script text="text/javascript">
-        var pagina = 1, qtd_result_pg = 5, origem=null;
-        
-        $(document).ready(function(){
-                listar_pessoa(pagina, qtd_result_pg);
+        $(document).ready(function() { //executa assim que carrega a página
+            //define as variáveis com a página atua
+            var pagina = 1; // define a página atual
+            var qtd_result_pg = 10; //define a quantidade de páginas por página
+           listar_registros(pagina, qtd_result_pg); //chama a função listar_registros
+
+            //chama a função assim que carrega a página
+            $("#form-pesquisa").submit(function(evento) {
+                evento.preventDefault();
+               listar_registros(pagina, qtd_result_pg); //chama a função listar_registros
+            });
         });
 
-        function listar_pessoa(pagina, qtd_result_pg){
-                var dados = {
-                    pesquisa: "",
+        //define a função listar_registross()
+        function listar_registros(pagina, qtd_result_pg) {
+                var pesquisa = $("#pesquisa").val();    
+                var dados = { //define o objeto com os dados a serem enviados
+                    pesquisa: pesquisa,
                     pagina: pagina,
-                    qtd_result_pg: qtd_result_pg 
+                    qtd_result_pg: qtd_result_pg
                 }
-                
-                $.post('buscarPessoa.php', dados, function(retorna){
-                    $(".resultados").html(retorna);
+
+                $.post('buscarPessoa.php', dados, function(retorna) { //envia os dados via post
+                    $(".resultados").html(retorna); //define onde o resultado será exibido
                 });
-        }
-
-        // function listar_usuario_filtro(pagina, qtd_result_pg, origem){
-        //     $("#form-pesquisa").submit(function(evento){
-        //         evento.preventDefault();
-        //       var pesquisa = $("#pesquisa").val();
-                
-        //         var dados = {
-        //             pesquisa : pesquisa,
-        //             pagina: pagina,
-        //             qtd_result_pg: qtd_result_pg 
-
-        //         }
-                
-        //         $.post('buscarPessoa.php', dados, function(retorna){
-        //             $(".resultados").html(retorna);
-        //         });
-        //     });
-        // }
+            }
 
         function confirmarExclusao(id, nm, sn) {
             if (window.confirm("Deseja realmente apagar o registro:\n" + id + " - " + nm + " " + sn)) {
@@ -68,7 +59,7 @@ session_start();
     //verifica se foi iniciada a seção do usuário
     if (isset($_SESSION["usuario"])) {
         include_once("menu.php");
-        ?>
+    ?>
 
         <h2 class="text-center">PESSOAS CADASTRADAS</h2>
         <hr>
@@ -76,9 +67,9 @@ session_start();
             <label for="pesquisa">Texto da pesquisa</label>
             <input type="text" name="pesquisa" id="pesquisa">
             <br>
-            <input type="submit" name="enviar" value="Pesquisar" onclick="listar_usuario_filtro(pagina, qtd_result_pg, 'botao')">
+            <input type="submit" name="btnEnviar" id="btnEnviar" value="Pesquisar">
         </form>
-       <div class="resultados">
+        <div class="resultados">
             <!--Os dados da busca efetuada pelo aquivo buscarPessoa.php, serão exibidos aqui-->
         </div>
 

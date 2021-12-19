@@ -19,11 +19,11 @@ session_start();
 
         function dataMax() {
             let dataAtual = new Date(); //pega a data atual
-            let dia = dataAtual.getDate(); //pega o dia'
+            let dia = dataAtual.getDate(); //pega o dia
             let mes = dataAtual.getMonth() + 1; //pega o mês do ano (0-11)
             let ano = dataAtual.getFullYear(); //pega o ano
             let data = ano + "-" + mes + "-" + dia; //formato 2021-12-13           
-            document.getElementById("dataNasc").max = data;
+            document.getElementById("dataNasc").max = data; //altera o atributo max da input date
         }
 
     </script>

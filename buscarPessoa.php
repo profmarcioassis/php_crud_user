@@ -3,7 +3,6 @@ include_once("conexao.php");
 session_start();
 
 if (isset($_SESSION["usuario"])) {
-    
     $pesquisa = $conn->real_escape_string($_POST['pesquisa']);
     $pagina = filter_input(INPUT_POST, 'pagina', FILTER_SANITIZE_NUMBER_INT);
     $qtd_result_pg = filter_input(INPUT_POST, 'qtd_result_pg', FILTER_SANITIZE_NUMBER_INT);
@@ -20,7 +19,7 @@ if (isset($_SESSION["usuario"])) {
                 or sobrenomePessoa like '%$pesquisa%'
                 order by idpessoa
                 LIMIT $inicio, $qtd_result_pg";
-    //echo $sql;
+    echo $sql;
     //executar o comando sql
     $dadosPessoas = $conn->query($sql);
     if ($dadosPessoas->num_rows > 0) {
@@ -65,8 +64,6 @@ if (isset($_SESSION["usuario"])) {
                     <?php
                     if ($_SESSION["tipo"] == 'A') {
                     ?>
-
-
                         <td>
                             <a href="#" onclick="confirmarExclusao('<?php echo $exibir["idPessoa"] ?>',
                         '<?php echo $exibir["nomePessoa"] ?>',
@@ -92,6 +89,8 @@ if (isset($_SESSION["usuario"])) {
                 where nomePessoa like '%$pesquisa%' 
                 or sobrenomePessoa like '%$pesquisa%'";
 
+        //echo $sql_qtd_registros;
+
         $result_registros = $conn->query($sql_qtd_registros);
         $qtd_registros = $result_registros->fetch_assoc();
 
@@ -106,26 +105,30 @@ if (isset($_SESSION["usuario"])) {
 
         //echo "<br>$qtd_paginas<br>";
         //link para a primeira página
-        echo "<div class='text-center'>";
-        echo "<a href='#' onclick='listar_pessoa(1, $qtd_result_pg)'>Primeira</a>";
+        echo "<nav aria-label='Paginação de registros'>";
+        echo "<ul class='pagination'>";
 
+        echo " <li class='page-item'><a href='#'  class='page-link' onclick='listar_registros(1, $qtd_result_pg)'><<</a></li>";
+
+        
         for ($pag_ant = $pagina - $max_links; $pag_ant <= $pagina - 1; $pag_ant++) {
             if ($pag_ant >= 1) {
-                echo "<a href='#' onclick='listar_pessoa($pag_ant, $qtd_result_pg)'> $pag_ant </a>";
+                echo "<li class='page-item'><a href='#'  class='page-link' onclick='listar_registros($pag_ant, $qtd_result_pg)'> $pag_ant </a></li>";
             }
         }
 
-        echo " $pagina ";
+        echo "<li class='page-link text-dark'> $pagina </li> "; //escreve a página atual
 
         for ($pag_dep = $pagina + 1; $pag_dep <= $pagina + $max_links; $pag_dep++) {
             if ($pag_dep <= $qtd_paginas) {
-                echo "<a href='#' onclick='listar_pessoa($pag_dep, $qtd_result_pg)'> $pag_dep </a>";
+                echo "<li class='page-item'><a href='#'  class='page-link' onclick='listar_registros($pag_dep, $qtd_result_pg)'> $pag_dep </a></li>";
             }
         }
         
         //link para a última página
-        echo "<a href='#' onclick='listar_pessoa($qtd_paginas, $qtd_result_pg)'>Última</a>";
-        echo "</div>";
+        echo "<li class='page-item'><a href='#'  class='page-link' onclick='listar_registros($qtd_paginas, $qtd_result_pg)'>>></a></li>";
+        echo "</ul></nav>";
+
     
     }
      else {

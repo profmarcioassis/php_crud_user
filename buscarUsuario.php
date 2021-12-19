@@ -60,11 +60,10 @@ if (isset($_SESSION["usuario"])) {
                     if ($_SESSION["tipo"] == 'A') {
                     ?>
 
-                        <td><a href="editarUsuario.php?idUser=<?php echo $exibir["iduser"] ?>" 
-                        title="Editar registro"><i class="fa fa-edit"></i></a></td>
+                        <td><a href="editarUsuario.php?idUser=<?php echo $exibir["iduser"] ?>" title="Editar registro"><i class="fa fa-edit"></i></a></td>
 
                         <td>
-                            <a href="#"  title="Excluir registro" onclick="confirmarExclusao('<?php echo $exibir["iduser"] ?>',
+                            <a href="#" title="Excluir registro" onclick="confirmarExclusao('<?php echo $exibir["iduser"] ?>',
                         '<?php echo $exibir["name"] ?>',
                         '<?php echo $exibir["user"] ?>')"><i class="fa fa-trash"></i></a>
                         </td>
@@ -102,26 +101,29 @@ if (isset($_SESSION["usuario"])) {
 
         //echo "<br>$qtd_paginas<br>";
         //link para a primeira página
-        echo "<div class='text-center'>";
-        echo "<a href='#' onclick='listar_usuario(1, $qtd_result_pg)'>Primeira</a>";
+        echo "<nav aria-label='Paginação de registros'>";
+        echo "<ul class='pagination'>";
+
+        echo " <li class='page-item'><a href='#'  class='page-link' onclick='listar_registros(1, $qtd_result_pg)'><<</a></li>";
+
 
         for ($pag_ant = $pagina - $max_links; $pag_ant <= $pagina - 1; $pag_ant++) {
             if ($pag_ant >= 1) {
-                echo "<a href='#' onclick='listar_usuario($pag_ant, $qtd_result_pg)'> $pag_ant </a>";
+                echo "<li class='page-item'><a href='#'  class='page-link' onclick='listar_registros($pag_ant, $qtd_result_pg)'> $pag_ant </a></li>";
             }
         }
 
-        echo " $pagina ";
+        echo "<li class='page-link text-dark'> $pagina </li> "; //escreve a página atual
 
         for ($pag_dep = $pagina + 1; $pag_dep <= $pagina + $max_links; $pag_dep++) {
             if ($pag_dep <= $qtd_paginas) {
-                echo "<a href='#' onclick='listar_usuario($pag_dep, $qtd_result_pg)'> $pag_dep </a>";
+                echo "<li class='page-item'><a href='#'  class='page-link' onclick='listar_registros($pag_dep, $qtd_result_pg)'> $pag_dep </a></li>";
             }
         }
 
         //link para a última página
-        echo "<a href='#' onclick='listar_usuario($qtd_paginas, $qtd_result_pg)'>Última</a>";
-        echo "</div>";
+        echo "<li class='page-item'><a href='#'  class='page-link' onclick='listar_registros($qtd_paginas, $qtd_result_pg)'>>></a></li>";
+        echo "</ul></nav>";
     } else {
         echo "Nenhum registro cadastrado!";
     }

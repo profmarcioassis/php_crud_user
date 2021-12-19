@@ -19,23 +19,31 @@ session_start();
     <title>Lista de Usuários Cadastrados</title>
 
     <script text="text/javascript">
-        var pagina = 1,
-            qtd_result_pg = 5,
-            origem = null;
+        $(document).ready(function() { //executa assim que carrega a página
+            //define as variáveis com a página atua
+            var pagina = 1; // define a página atual
+            var qtd_result_pg = 2; //define a quantidade de páginas por página
+            listar_registros(pagina, qtd_result_pg); //chama a função listar_registros
 
-        $(document).ready(function() {
-            listar_usuario(pagina, qtd_result_pg);
+            //chama a função assim que carrega a página
+            $("#form-pesquisa").submit(function(evento) {
+                evento.preventDefault();
+                listar_registros(pagina, qtd_result_pg); //chama a função listar_registros
+            });
         });
 
-        function listar_usuario(pagina, qtd_result_pg) {
-            var dados = {
-                pesquisa: "",
+        //define a função listar_registross()
+        function listar_registros(pagina, qtd_result_pg) {
+            var pesquisa = $("#pesquisa").val();
+            var dados = { //define o objeto com os dados a serem enviados
+                pesquisa: pesquisa,
                 pagina: pagina,
                 qtd_result_pg: qtd_result_pg
             }
 
+            //envia os dados via post
             $.post('buscarUsuario.php', dados, function(retorna) {
-                $(".resultados").html(retorna);
+                $(".resultados").html(retorna); //carrega os dados para a div .resultado
             });
         }
 
