@@ -19,13 +19,12 @@ session_start();
 
         function dataMax() {
             let dataAtual = new Date(); //pega a data atual
-            let dia = dataAtual.getDate(); //pega o dia
-            let mes = dataAtual.getMonth() + 1; //pega o mês do ano (0-11)
+            let dia = String(dataAtual.getDate()).padStart(2, '0'); //pega o dia
+            let mes = String(dataAtual.getMonth() + 1).padStart(2, '0'); //pega o mês do ano (0-11)
             let ano = dataAtual.getFullYear(); //pega o ano
             let data = ano + "-" + mes + "-" + dia; //formato 2021-12-13           
             document.getElementById("dataNasc").max = data; //altera o atributo max da input date
         }
-
     </script>
 
 
@@ -100,7 +99,7 @@ session_start();
                     <label class="col-sm-2"></label>
 
                     <div class="col-sm-10">
-                        <input class="btn btn-primary " type="submit" value="Cadastrar" onclick="validarSenha()">
+                        <input class="btn btn-primary " type="submit" value="Cadastrar">
                         <input class="btn btn-warning" type="reset" value="Limpar">
                     </div>
                 </div>

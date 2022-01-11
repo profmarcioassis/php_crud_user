@@ -22,7 +22,7 @@ session_start();
         $(document).ready(function() { //executa assim que carrega a página
             //define as variáveis com a página atua
             var pagina = 1; // define a página atual
-            var qtd_result_pg = 2; //define a quantidade de páginas por página
+            var qtd_result_pg = 5; //define a quantidade de páginas por página
             listar_registros(pagina, qtd_result_pg); //chama a função listar_registros
 
             //chama a função assim que carrega a página

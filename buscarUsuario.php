@@ -104,7 +104,7 @@ if (isset($_SESSION["usuario"])) {
         echo "<nav aria-label='Paginação de registros'>";
         echo "<ul class='pagination'>";
 
-        echo " <li class='page-item'><a href='#'  class='page-link' onclick='listar_registros(1, $qtd_result_pg)'><<</a></li>";
+        echo " <li class='page-item'><a href='#'  class='page-link' onclick='listar_registros(1, $qtd_result_pg)'>Primeira</a></li>";
 
 
         for ($pag_ant = $pagina - $max_links; $pag_ant <= $pagina - 1; $pag_ant++) {
@@ -122,7 +122,7 @@ if (isset($_SESSION["usuario"])) {
         }
 
         //link para a última página
-        echo "<li class='page-item'><a href='#'  class='page-link' onclick='listar_registros($qtd_paginas, $qtd_result_pg)'>>></a></li>";
+        echo "<li class='page-item'><a href='#'  class='page-link' onclick='listar_registros($qtd_paginas, $qtd_result_pg)'>Última</a></li>";
         echo "</ul></nav>";
     } else {
         echo "Nenhum registro cadastrado!";

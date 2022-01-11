@@ -23,28 +23,29 @@ session_start();
             //define as variáveis com a página atua
             var pagina = 1; // define a página atual
             var qtd_result_pg = 10; //define a quantidade de páginas por página
-           listar_registros(pagina, qtd_result_pg); //chama a função listar_registros
+            
+            listar_registros(pagina, qtd_result_pg); //chama a função listar_registros
 
             //chama a função assim que carrega a página
             $("#form-pesquisa").submit(function(evento) {
                 evento.preventDefault();
-               listar_registros(pagina, qtd_result_pg); //chama a função listar_registros
+                listar_registros(pagina, qtd_result_pg); //chama a função listar_registros
             });
         });
 
         //define a função listar_registross()
         function listar_registros(pagina, qtd_result_pg) {
-                var pesquisa = $("#pesquisa").val();    
-                var dados = { //define o objeto com os dados a serem enviados
-                    pesquisa: pesquisa,
-                    pagina: pagina,
-                    qtd_result_pg: qtd_result_pg
-                }
-
-                $.post('buscarPessoa.php', dados, function(retorna) { //envia os dados via post
-                    $(".resultados").html(retorna); //define onde o resultado será exibido
-                });
+            var pesquisa = $("#pesquisa").val();
+            var dados = { //define o objeto com os dados a serem enviados
+                pesquisa: pesquisa,
+                pagina: pagina,
+                qtd_result_pg: qtd_result_pg
             }
+
+            $.post('buscarPessoa.php', dados, function(retorna) { //envia os dados via post
+                $(".resultados").html(retorna); //define onde o resultado será exibido
+            });
+        }
 
         function confirmarExclusao(id, nm, sn) {
             if (window.confirm("Deseja realmente apagar o registro:\n" + id + " - " + nm + " " + sn)) {
