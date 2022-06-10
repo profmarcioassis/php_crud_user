@@ -1,12 +1,12 @@
 <?php
     //parãmetros de conexão com BD
-    $servername = "localhost"; //nome ou endereço (ip) do servidor
-    $username = "root"; //nome do usuário
-    $password = ""; //senha de acesso ao servidor do banco de dados
-    $dbname = "bdPessoa"; //nome do banco de dados
+    define('HOST', 'localhost');//define o nome do servidor
+    define('USER', 'root');; //nome do usuário
+    define('PASSWORD', ''); //define a senha de acesso ao BD
+    define('DB', 'bdpessoa'); //define o nome do Bando de Dados
 
     //criar um objeto de conexão
-    $conn = new mysqli($servername, $username, $password, $dbname);
+    $conn = new mysqli(HOST, USER, PASSWORD, DB);
 
     //checar a conexão
     if ($conn->connect_error) {

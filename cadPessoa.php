@@ -18,11 +18,20 @@ session_start();
     <script>
 
         function dataMax() {
-            let dataAtual = new Date(); //pega a data atual
-            let dia = String(dataAtual.getDate()).padStart(2, '0'); //pega o dia
-            let mes = String(dataAtual.getMonth() + 1).padStart(2, '0'); //pega o mês do ano (0-11)
-            let ano = dataAtual.getFullYear(); //pega o ano
-            let data = ano + "-" + mes + "-" + dia; //formato 2021-12-13           
+
+            //o construtor date retorna a data atual
+            let dataAtual = new Date(); 
+            //getDate() retorna o dia da data (00-31)
+            let dia = String(dataAtual.getDate()).padStart(2, '0'); 
+            //getMonth() retorna o mês da data (00-11)
+            let mes = String(dataAtual.getMonth() + 1).padStart(2, '0'); 
+            //getFullYear retorna o ano da data
+            let ano = dataAtual.getFullYear(); 
+            //formatando a data para dd/mm/yyyy
+            let data = ano + "-" + mes + "-" + dia;
+            //exibe a data no formato dd/mm/yyyy
+            console.log(data); 
+                       
             document.getElementById("dataNasc").max = data; //altera o atributo max da input date
         }
     </script>

@@ -12,24 +12,26 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
 
-<div class="align-middle" 
-style="height: 50px; width: 100%; margin-top: 10px; padding-right: 10px; background-color: silver; text-align: right;">
+<div class="align-middle" style="height: 50px; width: 100%; margin-top: 10px; padding-right: 10px; background-color: silver; text-align: right;">
     Bem-vindo(a): <b> <?php echo $_SESSION["nome"]; ?></b>
     <br><a href="sair.php" title="Logout" style="text-decoration: none;">Sair <i class="fa fa-sign-out"></i></a>
 </div>
+
 <nav class="nav navbar-expand-lg bg-dark navbar-dark">
     <ul class="navbar-nav">
-        <?php
-        //verifica se o usuário é do tipo administrador
-        if ($_SESSION["tipo"] == 'A') {
-        ?>
-            <li class="nav-item">
-                <a class="nav-link" href="cadPessoa.php">Cadastrar Pessoa</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="cadUsuario.php">Cadastrar Usuário</a>
-            </li>
-        <?php } ?>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Cadastros</a>
+            <div class="dropdown-menu">
+                <?php
+                //verifica se o usuário é do tipo administrador
+                if ($_SESSION["tipo"] == 'A') {
+                ?>
+                    <a class="dropdown-item" href="cadPessoa.php">Cadastrar Pessoa</a>
+                    <a class="dropdown-item" href="cadUsuario.php">Cadastrar Usuário</a>
+                <?php } ?>
+            </div>
+        </li>
+
         <li class="nav-item">
             <a class="nav-link" href="selecionarPessoa.php">Listar Pessoas</a>
         </li>
@@ -40,6 +42,5 @@ style="height: 50px; width: 100%; margin-top: 10px; padding-right: 10px; backgro
         <li class="nav-item">
             <a class="nav-link" href="grafico_Genero.php">Pessoas por Gênero</a><br />
         </li>
-
     </ul>
 </nav>

@@ -17,6 +17,8 @@
         $_SESSION["usuario"] = $dados_usuario["user"];
         $_SESSION["nome"] = $dados_usuario["name"]; 
         $_SESSION["tipo"] = $dados_usuario["type"];
+        
+
         header("location: selecionarPessoa.php");
     }else{ //se houver algum erro no login
         $_SESSION["erro"] = "Erro";
