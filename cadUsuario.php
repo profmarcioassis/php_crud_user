@@ -139,6 +139,7 @@ session_start();
             //new nicEditor({fullPanel : true}).panelInstance('txtObs');
         }); // convert text area with id area2 to rich text editor with full panel.
     </script>
+
 </body>
 
 </html>

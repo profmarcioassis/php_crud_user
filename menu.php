@@ -19,18 +19,20 @@
 
 <nav class="nav navbar-expand-lg bg-dark navbar-dark">
     <ul class="navbar-nav">
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Cadastros</a>
-            <div class="dropdown-menu">
-                <?php
-                //verifica se o usuário é do tipo administrador
-                if ($_SESSION["tipo"] == 'A') {
-                ?>
+        <?php
+        //verifica se o usuário é do tipo administrador
+        if ($_SESSION["tipo"] == 'A') {
+        ?>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Cadastros</a>
+                <div class="dropdown-menu">
+
                     <a class="dropdown-item" href="cadPessoa.php">Cadastrar Pessoa</a>
                     <a class="dropdown-item" href="cadUsuario.php">Cadastrar Usuário</a>
-                <?php } ?>
-            </div>
-        </li>
+
+                </div>
+            </li>
+        <?php } ?>
 
         <li class="nav-item">
             <a class="nav-link" href="selecionarPessoa.php">Listar Pessoas</a>

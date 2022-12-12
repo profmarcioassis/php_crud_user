@@ -33,10 +33,11 @@ if (isset($_SESSION["usuario"])) {
                 <th>Data de Nascimento</th>
                 <th>Estado Civil</th>
                 <th>Sexo</th>
-                <th>Editar</th>
                 <?php
                 if ($_SESSION["tipo"] == 'A') {
                 ?>
+                    <th>Editar</th>
+
                     <th>Excluir</th>
                 <?php
                 }
@@ -60,10 +61,13 @@ if (isset($_SESSION["usuario"])) {
                     ?>
                     <td><?php echo $estCivil["estadoCivil"] ?> </td>
                     <td><?php echo $exibir["Sexo"] ?> </td>
-                    <td><a href="editarPessoa.php?idPessoa=<?php echo $exibir["idPessoa"] ?>">Editar</a></td>
+
+
                     <?php
                     if ($_SESSION["tipo"] == 'A') {
                     ?>
+                    <td><a href="editarPessoa.php?idPessoa=<?php echo $exibir["idPessoa"] ?>">Editar</a></td>
+                    
                         <td>
                             <a href="#" onclick="confirmarExclusao('<?php echo $exibir["idPessoa"] ?>',
                         '<?php echo $exibir["nomePessoa"] ?>',
@@ -110,7 +114,7 @@ if (isset($_SESSION["usuario"])) {
 
         echo " <li class='page-item'><a href='#'  class='page-link' onclick='listar_registros(1, $qtd_result_pg)'>Primeira</a></li>";
 
-        
+
         for ($pag_ant = $pagina - $max_links; $pag_ant <= $pagina - 1; $pag_ant++) {
             if ($pag_ant >= 1) {
                 echo "<li class='page-item'><a href='#'  class='page-link' onclick='listar_registros($pag_ant, $qtd_result_pg)'> $pag_ant </a></li>";
@@ -124,14 +128,11 @@ if (isset($_SESSION["usuario"])) {
                 echo "<li class='page-item'><a href='#'  class='page-link' onclick='listar_registros($pag_dep, $qtd_result_pg)'> $pag_dep </a></li>";
             }
         }
-        
+
         //link para a última página
         echo "<li class='page-item'><a href='#'  class='page-link' onclick='listar_registros($qtd_paginas, $qtd_result_pg)'>Última</a></li>";
         echo "</ul></nav>";
-
-    
-    }
-     else {
+    } else {
         echo "Nenhum registro cadastrado!";
     }
 }
