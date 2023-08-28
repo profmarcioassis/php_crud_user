@@ -95,7 +95,7 @@ if (isset($_SESSION["usuario"])) {
             <div class="form-group row">
                 <label class="col-sm-2 font-weight-bold col-form-label text-right" for="dataNasc">Data de Nascimento</label>
                 <div class="col-sm-2">
-                    <input class="form-control" type="date" max="2021-12-13" name="dataNasc" required value="<?php echo $pessoa['dataNasc'] ?>">
+                    <input class="form-control" type="date" max="2023-07-18" name="dataNasc" required value="<?php echo $pessoa['dataNasc'] ?>">
                 </div>
             </div>
 

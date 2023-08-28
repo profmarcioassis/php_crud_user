@@ -24,66 +24,70 @@ if (isset($_SESSION["usuario"])) {
     $dadosPessoas = $conn->query($sql);
     if ($dadosPessoas->num_rows > 0) {
 ?>
-        <br><br>
-        <table class="table table-striped">
-            <tr>
-                <th>Id</th>
-                <th>Nome</th>
-                <th>Sobrenome</th>
-                <th>Data de Nascimento</th>
-                <th>Estado Civil</th>
-                <th>Sexo</th>
-                <?php
+<br><br>
+<table class="table table-striped">
+    <thead>
+
+        <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Sobrenome</th>
+            <th>Data de Nascimento</th>
+            <th>Estado Civil</th>
+            <th>Sexo</th>
+            <?php
                 if ($_SESSION["tipo"] == 'A') {
                 ?>
-                    <th>Editar</th>
-
-                    <th>Excluir</th>
-                <?php
+            <th>Editar</th>
+            <th>Excluir</th>
+            <?php
                 }
                 ?>
-            </tr>
+        </tr>
+    </thead>
+    <tbody>
 
-            <?php
+        <?php
 
             while ($exibir = $dadosPessoas->fetch_assoc()) { //fetch_assoc() retorna cada linha da matriz
             ?>
-                <tr>
-                    <td><?php echo $exibir["idPessoa"] ?></td>
-                    <td><?php echo $exibir["nomePessoa"] ?> </td>
-                    <td><?php echo $exibir["sobrenomePessoa"] ?> </td>
-                    <td><?php echo date("d/m/Y", strtotime($exibir["dataNasc"])) ?> </td>
-                    <?php
+        <tr>
+            <td><?php echo $exibir["idPessoa"] ?></td>
+            <td><?php echo $exibir["nomePessoa"] ?> </td>
+            <td><?php echo $exibir["sobrenomePessoa"] ?> </td>
+            <td><?php echo date("d/m/Y", strtotime($exibir["dataNasc"])) ?> </td>
+            <?php
                     //busca o estado civil de acordo com o código da tabela tbpessoa
                     $sqlEstCivil = "SELECT * FROM tbestcivil WHERE idEstCivil = " . $exibir["idEstCivil"];
                     $dadosEstCivil = $conn->query($sqlEstCivil);
                     $estCivil = $dadosEstCivil->fetch_assoc();
                     ?>
-                    <td><?php echo $estCivil["estadoCivil"] ?> </td>
-                    <td><?php echo $exibir["Sexo"] ?> </td>
+            <td><?php echo $estCivil["estadoCivil"] ?> </td>
+            <td><?php echo $exibir["Sexo"] ?> </td>
 
-
-                    <?php
-                    if ($_SESSION["tipo"] == 'A') {
-                    ?>
-                    <td><a href="editarPessoa.php?idPessoa=<?php echo $exibir["idPessoa"] ?>">Editar</a></td>
-                    
-                        <td>
-                            <a href="#" onclick="confirmarExclusao('<?php echo $exibir["idPessoa"] ?>',
-                        '<?php echo $exibir["nomePessoa"] ?>',
-                        '<?php echo $exibir["sobrenomePessoa"] ?>')">Excluir</a>
-                        </td>
-
-                    <?php
-                    }
-                    ?>
-                </tr>
 
             <?php
+                    if ($_SESSION["tipo"] == 'A') {
+                    ?>
+            <td><a href="editarPessoa.php?idPessoa=<?php echo $exibir["idPessoa"] ?>">Editar</a></td>
+
+            <td>
+                <a href="#" onclick="confirmarExclusao('<?php echo $exibir["idPessoa"] ?>',
+                        '<?php echo $exibir["nomePessoa"] ?>',
+                        '<?php echo $exibir["sobrenomePessoa"] ?>')">Excluir</a>
+            </td>
+
+            <?php
+                    }
+            ?>
+        </tr>
+
+        <?php
             }
 
             ?>
-        </table>
+    </tbody>
+</table>
 <?php
 
         //criando os links de paginação

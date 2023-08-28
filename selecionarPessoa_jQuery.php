@@ -71,8 +71,7 @@ session_start();
     <?php
     //verifica se foi iniciada a seção do usuário
     if (isset($_SESSION["usuario"])) {
-    ?>
-        <?php
+    
         //inclui o script de boas-vindas e menu
         include_once("menu.php");
         ?>

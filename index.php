@@ -9,14 +9,7 @@ session_start();
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>CRUD Pessoa - LOGIN</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script type="text/javascript">
-            $(document).ready(function () {
-                setInterval(function () {
-                    $('#erro').fadeOut(1500);
-                }, 4000);
-            });
-        </script>
-
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     </head>
 
     <body>
@@ -29,9 +22,10 @@ session_start();
         ?>
             <script>
                 document.getElementById('txtUser').focus();
+                //document.getElementById('txtUser').select();
             </script>
             <div id="erro" class="text-center alert-warning p-md-3">
-                Usuário ou senha inválidos. Tente novamente.
+                Usuário ou senha inválidos. Tente novamente!
             </div>
             <?php
                 //deleta o valor da session erro
@@ -50,7 +44,7 @@ session_start();
 
                 <!-- Password input -->
                 <div class="form-outline mb-4">
-                    <label class="form-label" for="form2Example2">Senha</label>
+                    <label class="form-label" for="txtPassword">Senha</label>
                     <input type="password" id="txtPassword" name="txtPassword" class="form-control" required />
 
                 </div>
@@ -81,10 +75,16 @@ session_start();
         </div>
         </form>
 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                setInterval(function () {
+                    $('#erro').fadeOut(1500);
+                }, 4000);
+            });
+        </script>
     </body>
 
 </html>
