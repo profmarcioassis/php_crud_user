@@ -12,12 +12,12 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
 
-<div class="align-middle" style="height: 50px; width: 100%; margin-top: 10px; padding-right: 10px; background-color: silver; text-align: right;">
+<div class="align-middle" style="height: 50px; width: 100%; margin-top: 10px; padding-right: 10px; padding-top: 10px; background-color: silver; text-align: right;">
     Bem-vindo(a): <b> <?php echo $_SESSION["nome"]; ?></b>
-    <br><a href="sair.php" title="Logout" style="text-decoration: none;">Sair <i class="fa fa-sign-out"></i></a>
+    &nbsp;&nbsp;<a href="sair.php" title="Logout" style="text-decoration: none;">Sair <i class="fa fa-sign-out"></i></a>
 </div>
 
-<nav class="nav navbar-expand-lg bg-dark navbar-dark">
+<nav class="nav navbar-expand-lg bg-dark navbar-dark pt-3">
     <ul class="navbar-nav">
         <?php
         //verifica se o usuário é do tipo administrador
