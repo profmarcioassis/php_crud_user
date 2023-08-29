@@ -27,6 +27,7 @@ if (isset($_SESSION["usuario"])) {
 ?>
         <br><br>
         <table class="table table-striped">
+            <thead>
             <tr>
                 <th>Id</th>
                 <th>Nome</th>
@@ -44,6 +45,8 @@ if (isset($_SESSION["usuario"])) {
                 }
                 ?>
             </tr>
+            </thead>
+            <tbody>
 
             <?php
 
@@ -77,6 +80,7 @@ if (isset($_SESSION["usuario"])) {
             }
 
             ?>
+            </tbody>
         </table>
 <?php
 
