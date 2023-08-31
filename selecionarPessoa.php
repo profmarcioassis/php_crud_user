@@ -7,24 +7,25 @@ session_start();
 <!DOCTYPE html>
 <html lang="pt-br">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <title>Lista de Pessoas</title>
+        <title>Lista de Pessoas</title>
 
-    <script text="text/javascript">
+        <script text="text/javascript">
         $(document).ready(function() { //executa assim que carrega a página
             //define as variáveis com a página atua
             var pagina = 1; // define a página atual
             var qtd_result_pg = 10; //define a quantidade de páginas por página
-            
+
             listar_registros(pagina, qtd_result_pg); //chama a função listar_registros
 
             //chama a função assim que carrega a página
@@ -53,11 +54,11 @@ session_start();
                 window.location = "excluirPessoa.php?idPessoa=" + id;
             }
         }
-    </script>
-</head>
+        </script>
+    </head>
 
-<body style="margin: 20px;">
-    <?php
+    <body style="margin: 20px;">
+        <?php
     //verifica se foi iniciada a seção do usuário
     if (isset($_SESSION["usuario"])) {
         include_once("menu.php");
@@ -66,25 +67,25 @@ session_start();
         <h2 class="text-center">PESSOAS CADASTRADAS</h2>
         <hr>
         <form id="form-pesquisa" action="" method="post">
-            <label for="pesquisa">Texto da pesquisa</label>
-            <input type="text" name="pesquisa" id="pesquisa">
-            <br>
-            <input type="submit" name="btnEnviar" id="btnEnviar" value="Pesquisar">
+            <div class="col-6">
+                <input type="text" size="50" name="pesquisa" id="pesquisa" placeholder="Digite o texto da pesquisa">
+                <input type="submit" name="btnEnviar" id="btnEnviar" value="Pesquisar">
+            </div>
         </form>
         <div class="resultados">
             <!--Os dados da busca efetuada pelo aquivo buscarPessoa.php, serão exibidos aqui-->
         </div>
 
-    <?php
+        <?php
     } else {
         echo "Usuário não autenticado!";
     ?>
         <a href="index.php">Se identifique aqui</a>
-    <?php
+        <?php
 
     }
 
     ?>
-</body>
+    </body>
 
 </html>
