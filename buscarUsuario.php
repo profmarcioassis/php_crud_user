@@ -33,6 +33,7 @@ if (isset($_SESSION["usuario"])) {
                 <th>User</th>
                 <th>E-mail</th>
                 <th>Tipo</th>
+                <th>Status</th>
                 <th>Obs</th>
 
                 <?php
@@ -55,12 +56,14 @@ if (isset($_SESSION["usuario"])) {
                     <td><?php echo $exibir["user"] ?> </td>
                     <td><?php echo $exibir["email"] ?> </td>
                     <td><?php echo $exibir["type"] ?> </td>
+                    <td><?php echo $exibir["status"] ?> </td>
                     <td><?php echo $exibir["obsuser"] ?> </td>
+
                     <?php
                     if ($_SESSION["tipo"] == 'A') {
                     ?>
 
-                        <td><a href="editarUsuario.php?idUser=<?php echo $exibir["iduser"] ?>" title="Editar registro"><i class="fa fa-edit"></i></a></td>
+                        <td><a href="editarUsuario.php?iduser=<?php echo $exibir["iduser"] ?>" title="Editar registro"><i class="fa fa-edit"></i></a></td>
 
                         <td>
                             <a href="#" title="Excluir registro" onclick="confirmarExclusao('<?php echo $exibir["iduser"] ?>',

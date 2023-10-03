@@ -93,6 +93,14 @@ session_start();
                     </div>
                 </div>
                 <div class="form-group row">
+                <label class="col-sm-2 font-weight-bold col-form-label text-right" for="radioStatus">Status:</label>
+                <div class="col-sm-10">
+                    <input type="radio" name="radioStatus" id="radioStatus" value="A">Ativo
+                    &nbsp;&nbsp;&nbsp;
+                    <input type="radio" name="radioStatus" id="radioStatus" value="I">Inativo
+                </div>
+            </div>
+                <div class="form-group row">
                     <label class="col-sm-2 font-weight-bold col-form-label text-right" for="txtObs">Observação: </label>
                     <div class="col-sm-10">
                         <textarea class="form-control" name="txtObs" id="txtObs" rows="5" cols="60" placeholder="Observação"></textarea>
