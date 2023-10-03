@@ -18,7 +18,7 @@ if (isset($_SESSION["usuario"])) {
         //criar o comando update
         $sql = "UPDATE tbuser
             SET email = '$email',
-            password = '" . md5($password)."', 
+            password = '" . md5($password) . "', 
             user = '$user',    
             name = '$name',
             obsuser = '$obsuser',
