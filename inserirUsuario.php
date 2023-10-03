@@ -9,10 +9,11 @@ $email = $_POST["txtEmail"];
 $senha = $_POST["txtSenha"];
 $tipo = $_POST["radioUsuario"];
 $obsUsuario = $_POST["txtObs"];
+$status = $_POST["radioStatus"];
 
 //define o sql de inserção
-$SQL = "INSERT INTO tbuser (name, user, email, password, type, obsuser )";
-$SQL .= " VALUES('" . utf8_decode($nome) . "', '$usuario','$email', '" . md5($senha) . "', '$tipo', '$obsUsuario')";
+$SQL = "INSERT INTO tbuser (name, user, email, password, type, status, obsuser )";
+$SQL .= " VALUES('$nome', '$usuario','$email', '" . md5($senha) . "', '$tipo', '$status', '$obsUsuario')";
 
 //echo $SQL;
 
