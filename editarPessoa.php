@@ -2,7 +2,9 @@
 
 include_once('conexao.php');
 
-session_start();
+if (!isset($_SESSION)) {
+    session_start();
+}
 
 if (isset($_SESSION["usuario"])) {
     //receber os dados do form

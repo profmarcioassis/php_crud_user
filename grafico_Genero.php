@@ -2,7 +2,9 @@
 //inclui o script de conexão
 include_once('conexao.php');
 //incia a session
-session_start();
+if (!isset($_SESSION)) {
+    session_start();
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 19-Jan-2022 às 13:02
--- Versão do servidor: 10.4.21-MariaDB
--- versão do PHP: 8.0.12
+-- Tempo de geração: 04-Out-2023 às 16:37
+-- Versão do servidor: 10.4.27-MariaDB
+-- versão do PHP: 8.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -32,11 +32,7 @@ USE `bdpessoa`;
 CREATE TABLE `tbestcivil` (
   `idEstCivil` int(11) NOT NULL,
   `estadoCivil` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- RELACIONAMENTOS PARA TABELAS `tbestcivil`:
---
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Extraindo dados da tabela `tbestcivil`
@@ -62,13 +58,7 @@ CREATE TABLE `tbimagens` (
   `nomeImagem` varchar(100) NOT NULL,
   `extensaoImagem` varchar(3) NOT NULL,
   `idPessoa` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- RELACIONAMENTOS PARA TABELAS `tbimagens`:
---   `idPessoa`
---       `tbpessoa` -> `idPessoa`
---
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -83,13 +73,7 @@ CREATE TABLE `tbpessoa` (
   `idEstCivil` int(11) NOT NULL,
   `Sexo` varchar(12) NOT NULL,
   `dataNasc` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- RELACIONAMENTOS PARA TABELAS `tbpessoa`:
---   `idEstCivil`
---       `tbestcivil` -> `idEstCivil`
---
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Extraindo dados da tabela `tbpessoa`
@@ -339,27 +323,29 @@ CREATE TABLE `tbuser` (
   `password` varchar(100) NOT NULL,
   `user` varchar(20) NOT NULL,
   `name` varchar(50) NOT NULL,
-  `type` varchar(1) NOT NULL DEFAULT 'N',
-  `obsuser` varchar(500) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- RELACIONAMENTOS PARA TABELAS `tbuser`:
---
+  `type` varchar(1) NOT NULL DEFAULT 'O',
+  `obsuser` varchar(500) NOT NULL,
+  `status` varchar(1) NOT NULL DEFAULT 'I'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Extraindo dados da tabela `tbuser`
 --
 
-INSERT INTO `tbuser` (`iduser`, `email`, `password`, `user`, `name`, `type`, `obsuser`) VALUES
-(1, 'admin@gmail.com', '202cb962ac59075b964b07152d234b70', 'admin', 'Márcio Assis', 'A', 'Usuário adminisrador'),
-(2, 'ifmg@ifmg.edu.br', '202cb962ac59075b964b07152d234b70', 'ifmg', 'IFMG-OB', 'O', 'Usuário Comun'),
-(3, 'info03@gmail.com', '202cb962ac59075b964b07152d234b70', 'info03', 'Informática 03', 'A', ''),
-(6, 'miley@gmail.com', '202cb962ac59075b964b07152d234b70', 'miely', 'Miely Pereira', 'O', ''),
-(22, 'assismiranda@gmail.com', '202cb962ac59075', 'marcio', 'Márcio Assis Miranda', 'O', ''),
-(25, 'aredes@gmail.com', '4297f44b1395523', 'raquel', 'Raquel Arêdes', 'O', ''),
-(29, 'fdsaf@gmail.com', 'c67b8c67558a2e6', 'fadsf', 'dfasdf', 'O', ''),
-(33, 'daniel@gmail.com', '202cb962ac59075b964b07152d234b70', 'daniel', 'Daniel', 'O', '');
+INSERT INTO `tbuser` (`iduser`, `email`, `password`, `user`, `name`, `type`, `obsuser`, `status`) VALUES
+(1, 'admin@gmail.com', '202cb962ac59075b964b07152d234b70', 'admin', 'Márcio Assis', 'A', '<br>', 'A'),
+(2, 'ifmg@ifmg.edu.br', '202cb962ac59075b964b07152d234b70', 'ifmg', 'IFMG-OB', 'O', 'Usuário Comun', 'A'),
+(3, 'info03@gmail.com', '202cb962ac59075b964b07152d234b70', 'info03', 'Informática 03', 'A', '', 'A'),
+(6, 'miley@gmail.com', '202cb962ac59075b964b07152d234b70', 'miely', 'Miely Pereira', 'O', '', 'A'),
+(22, 'assismiranda@gmail.com', '202cb962ac59075b964b07152d234b70', 'marcio', 'Márcio Assis Miranda', 'O', '<br>', 'I'),
+(25, 'aredes@gmail.com', '4297f44b1395523', 'raquel', 'Raquel Arêdes', 'O', '', 'A'),
+(29, 'fdsaf@gmail.com', 'c67b8c67558a2e6', 'fadsf', 'dfasdf', 'O', '', 'A'),
+(33, 'daniel@gmail.com', '202cb962ac59075b964b07152d234b70', 'daniel', 'Daniel', 'O', '', 'A'),
+(35, 'haroldo@gmail.com', '202cb962ac59075b964b07152d234b70', 'haroldo', 'Haroldo', 'A', '<br>', 'A'),
+(36, 'novo@gmail.com', '4f9be5c7d521aa5e043604154eafd7b0', 'novo', 'Novo usuário', '', '<br>', 'A'),
+(37, 'assismiranda3@gmail.com', '202cb962ac59075b964b07152d234b70', 'duda', 'Maria Eduarda', '', '<br>', 'A'),
+(43, 'duda@gmail.com', '202cb962ac59075b964b07152d234b70', 'duda', 'Maria Eduarda dfadf', 'O', '<br>', 'I'),
+(45, 'assismiranda@gmail.com2', '202cb962ac59075b964b07152d234b70', 'duda3', 'Maria Eduarda', 'A', '<br>', 'I');
 
 --
 -- Índices para tabelas despejadas
@@ -391,12 +377,7 @@ ALTER TABLE `tbpessoa`
 --
 ALTER TABLE `tbuser`
   ADD PRIMARY KEY (`iduser`),
-  ADD UNIQUE KEY `email` (`email`,`user`),
-  ADD UNIQUE KEY `email_3` (`email`,`user`),
-  ADD UNIQUE KEY `email_4` (`email`,`user`),
-  ADD UNIQUE KEY `email_5` (`email`,`user`),
-  ADD UNIQUE KEY `name` (`name`),
-  ADD KEY `email_2` (`email`,`user`);
+  ADD UNIQUE KEY `email` (`email`,`user`);
 
 --
 -- AUTO_INCREMENT de tabelas despejadas
@@ -424,7 +405,7 @@ ALTER TABLE `tbpessoa`
 -- AUTO_INCREMENT de tabela `tbuser`
 --
 ALTER TABLE `tbuser`
-  MODIFY `iduser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `iduser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- Restrições para despejos de tabelas

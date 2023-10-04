@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (!isset($_SESSION)) {
+    session_start();
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-Br">
@@ -9,13 +11,8 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRUD Pessoa - LOGIN</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="text/javascript">
-        $(document).ready(function() {
-            setInterval(function() {
-                $('#erro').fadeOut(1500);
-            }, 4000);
-        });
-    </script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+   
 
 </head>
 
@@ -23,32 +20,22 @@ session_start();
     <h2 class="text-center mt-5">Tela de Login</h2>
     <div class="container">
         <?php
-        //verifica se foi inciada a session erro
-        if (isset($_SESSION["status"])) {
-            if ($_SESSION["status"] == "Inativo") { //verifica o valor da session
+        if (isset($_SESSION["erro"])) {
         ?>
-                <div id="erro" class="text-center alert-warning p-md-3">
-                    Usuário inativo. Aguarde a aprovação do administrador.
-                </div>
+
+            <div id="erro" class="text-center alert-warning p-md-3">
                 <?php
-                //deleta o valor da session erro
-                unset($_SESSION["status"]);
-            }
-        } else {
-            if (isset($_SESSION["erro"])) {
-                if ($_SESSION["erro"] == "Erro") { //verifica o valor da session
-                ?>
-                    <script>
-                        document.getElementById('txtUser').focus();
-                    </script>
-                    <div id="erro" class="text-center alert-warning p-md-3">
-                        Usuário ou senha inválidos. Tente novamente.
-                    </div>
-        <?php
-                    //deleta o valor da session erro
-                    unset($_SESSION["erro"]);
+                foreach ($_SESSION['erro'] as $erro) {
+                    echo $erro;
                 }
-            }
+                ?>
+            </div>
+            <script>
+                document.getElementById('txtUser').select();
+            </script>
+        <?php
+            //deleta o valor da session erro
+            unset($_SESSION["erro"]);
         }
 
         ?>
@@ -83,19 +70,26 @@ session_start();
 
                 <div class="col text-center">
                     <!-- Simple link -->
-                    <a href="#">Esqueceu a senha?</a>
+                    <a href="esqueceusenha.php" target="_blank">Esqueceu a senha?</a>
                 </div>
             </div>
             <div class="text-center">
                 <p>Ainda não está cadastrado? <a href="cadNovoUsuario.php">Registrar</a></p>
             </div>
+        </form>
     </div>
-    </form>
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            setInterval(function() {
+                $('#erro').fadeOut(1500);
+            }, 2000);
+        });
+    </script>
+    
 </body>
 
 </html>
