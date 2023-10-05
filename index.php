@@ -70,7 +70,7 @@ if (!isset($_SESSION)) {//verifica se existe a session
 
                 <div class="col text-center">
                     <!-- Simple link -->
-                    <a href="esqueceusenha.php" target="_blank">Esqueceu a senha?</a>
+                    <a href="esqueceuasenha.php" target="_blank">Esqueceu a senha?</a>
                 </div>
             </div>
             <div class="text-center">

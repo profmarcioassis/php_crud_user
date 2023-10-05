@@ -1,4 +1,5 @@
 <?php
+//ini_set("display_errors",true);
 include_once("conexao.php");
 if (isset($_POST['txtEmail'])) {
     $msg = array();
@@ -22,18 +23,24 @@ if (isset($_POST['txtEmail'])) {
             $assunto = "Nova senha de acesso";
             $mensagem = "Olá <b>". $dados['name']. "</b>!<br><br>";
             $mensagem .= "Segue a sua nova senha de acesso: $novaSenha";
-            $mensagem .= "<br><br>Obrigado";
-            echo $mensagem;
-            $headers = "From: assismiranda@gmail.com";
+            $mensagem .= "<br><br>Obrigado!<br>";
+            //echo $email;
+            $headers = "From: profmarcio.web@gmail.com";
+            $mailReturn = mail($email, $assunto, $mensagem, $headers);
+            var_dump($mailReturn);
             //if (true) {
-            if (mail($email, $assunto, $mensagem, $headers)) {
-                $sql = "UPDATE tbuser 
+            if ($mailReturn) {
+                /*$sql = "UPDATE tbuser 
                     SET password = '$novaSenhaCriptografada'
                     WHERE email = '$email'";
                 $sql_query = $conn->query($sql) or die($conn->error);
                 if ($sql_query) {
                     $msg[] = "Uma nova senha foi enviada ao seu e-mail.";
                 }
+                */
+                $msg[] = "Uma nova senha foi enviada ao seu e-mail.";
+            }else{
+                $msg[] = "Erro ao enviar o e-mail.";
             }
         }
     }
@@ -93,7 +100,5 @@ if (isset($_POST['txtEmail'])) {
             }, 2000);
         });
     </script>
-
 </body>
-
 </html>
