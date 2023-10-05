@@ -8,6 +8,7 @@ use PHPMailer\PHPMailer\Exception;
 //Load Composer's autoloader
 require './vendor/autoload.php';
 
+//inclui o arquivo de conexão
 include_once("conexao.php");
 
 if (isset($_POST['txtEmail'])) {
@@ -17,15 +18,6 @@ if (isset($_POST['txtEmail'])) {
 
     try {
         //Server settings
-        // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
-        // $mail->isSMTP();                                            //Send using SMTP
-        // $mail->Host       = 'smtp.example.com';                     //Set the SMTP server to send through
-        // $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-        // $mail->Username   = 'user@example.com';                     //SMTP username
-        // $mail->Password   = 'secret';                               //SMTP password
-        // $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-        // $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-
         $mail->isSMTP();
         $mail->Host = 'sandbox.smtp.mailtrap.io';
         $mail->SMTPAuth = true;
@@ -39,7 +31,6 @@ if (isset($_POST['txtEmail'])) {
             $msg[] = "E-mail informado é inválido. ";
         } else {
             $sql_code = "SELECT * from tbuser where email = '$email'";
-            //echo $sql_code;
             $sql_query = $conn->query($sql_code) or die($conn->error);
             $qtde = $sql_query->num_rows;
 
@@ -51,29 +42,18 @@ if (isset($_POST['txtEmail'])) {
                 $dados = $sql_query->fetch_assoc();
                 $novaSenha = substr(md5(time()), 0, 6);
                 $novaSenhaCriptografada = md5($novaSenha);
-
                 //Recipients
                 $mail->setFrom('profmarcio.web@gmail.com', 'Prof. Márcio Assis');
                 $mail->addAddress($email, $dados['name']);     //Add a recipient
-                //$mail->addAddress('ellen@example.com');               //Name is optional
-                //$mail->addReplyTo('info@example.com', 'Information');
-                //$mail->addCC('cc@example.com');
-                //$mail->addBCC('bcc@example.com');
-
-                //Attachments
-                //$mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
-                //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
 
                 //Content
                 $assunto = "Nova senha de acesso";
                 $mensagem = "Olá <b>" . $dados['name'] . "</b>!<br><br>";
                 $mensagem .= "Segue a sua nova senha de acesso: $novaSenha";
                 $mensagem .= "<br><br>Obrigado!<br>";
-                //echo $mensagem;
                 $mail->isHTML(true);                                  //Set email format to HTML
                 $mail->Subject = $assunto;
                 $mail->Body    = $mensagem;
-                //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
                 $mail->send();
 
                 if ($mail->send()) {
