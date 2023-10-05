@@ -60,9 +60,10 @@ session_start();
     //verifica se foi iniciada a seção do usuário
     if (isset($_SESSION["usuario"])) {
         include_once("menu.php");
+        if ($_SESSION["tipo"] == 'A') {
     ?>
 
-        <h2 class="text-center">PESSOAS CADASTRADAS</h2>
+        <h2 class="text-center">USUÁRIOS CADASTRADOS</h2>
         <hr>
         <form id="form-pesquisa" action="" method="post">
             <label for="pesquisa">Texto da pesquisa</label>
@@ -75,6 +76,9 @@ session_start();
         </div>
 
     <?php
+        }else{
+            echo "Usuário não autorizado!";
+        }
     } else {
         echo "Usuário não autenticado!";
     ?>

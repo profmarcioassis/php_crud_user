@@ -13,26 +13,49 @@ if (isset($_SESSION["usuario"])) {
         $user = $_POST["txtUsuario"];
         $email = $_POST["txtEmail"];
         $password = $_POST["txtSenha"];
-        $type = $_POST["radioUsuario"];
         $obsuser = $_POST["txtObs"];
-        $status = $_POST["radioStatus"];
 
-        //criar o comando update
-        $sql = "UPDATE tbuser
+        if ($_SESSION["tipo"] == 'A') {
+            $type = $_POST["radioUsuario"];
+            $status = $_POST["radioStatus"];
+            //criar o comando update
+            $sql = "UPDATE tbuser
+                SET email = '$email',
+                password = '" . md5($password) . "', 
+                user = '$user',    
+                name = '$name',
+                obsuser = '$obsuser',
+                type = '$type',
+                status = '$status'
+                WHERE iduser = " . $_GET['iduser'];
+        } else {
+            $sql = "UPDATE tbuser
             SET email = '$email',
             password = '" . md5($password) . "', 
             user = '$user',    
             name = '$name',
-            obsuser = '$obsuser',
-            status = '$status'
+            obsuser = '$obsuser'
             WHERE iduser = " . $_GET['iduser'];
+        }
         //echo $sql;
         //executar o comando sql
         if ($conn->query($sql) === TRUE) {
 ?>
             <script>
                 alert("Registro atualizado com sucesso!");
-                window.location = "selecionarUsuario.php";
+                <?php
+                if ($_SESSION['tipo'] == 'A') {
+                ?>
+                    window.location = 'selecionarUsuario.php';
+                <?php
+                } else {
+                ?>
+                    window.location = 'selecionarPessoa.php';
+
+                <?php
+                }
+
+                ?>
             </script>
 
         <?php
@@ -50,7 +73,7 @@ if (isset($_SESSION["usuario"])) {
     ?>
 
     <!DOCTYPE html>
-    <html lang="en">
+    <html lang="pt-br">
 
     <head>
         <meta charset="UTF-8">
@@ -113,14 +136,14 @@ if (isset($_SESSION["usuario"])) {
             <div class="form-group row">
                 <label class="col-sm-2 font-weight-bold col-form-label text-right" for="txtUsuario">Usuário: </label>
                 <div class="col-sm-10">
-                    <input class="form-control" type="text" name="txtUsuario" id="txtUsuario" size="80" required placeholder="Informe o usuário" value="<?php echo $dadosUser['user'] ?>" />
+                    <input class="form-control" type="text" name="txtUsuario" id="txtUsuario" size="80" <?php echo ("A" == $_SESSION["tipo"]) ? "required" : "readonly" ?> placeholder="Informe o usuário" value="<?php echo $dadosUser['user'] ?>" />
                 </div>
             </div>
 
             <div class="form-group row">
                 <label class="col-sm-2 font-weight-bold col-form-label text-right" for="txtEmail">Email: </label>
                 <div class="col-sm-10">
-                    <input class="form-control" type="email" name="txtEmail" id="txtEmail" size="80" required placeholder="Informe o Email" value="<?php echo $dadosUser['email'] ?>" />
+                    <input class="form-control" type="email" name="txtEmail" id="txtEmail" size="80" <?php echo ("A" == $_SESSION["tipo"]) ? "required" : "readonly" ?> placeholder="Informe o Email" value="<?php echo $dadosUser['email'] ?>" />
                 </div>
             </div>
 
@@ -139,17 +162,17 @@ if (isset($_SESSION["usuario"])) {
             <div class="form-group row">
                 <label class="col-sm-2 font-weight-bold col-form-label text-right" for="radioUsuario">Tipo:</label>
                 <div class="col-sm-10">
-                    <input type="radio" name="radioUsuario" id="radioUsuario" value="A" <?php echo ("A" == $dadosUser["type"]) ? "checked" : "" ?>>Administrador
+                    <input type="radio" <?php echo ("A" == $_SESSION["tipo"]) ? "" : "disabled" ?> name="radioUsuario" id="radioUsuario" value="A" <?php echo ("A" == $dadosUser["type"]) ? "checked" : "" ?>>Administrador
                     &nbsp;&nbsp;&nbsp;
-                    <input type="radio" name="radioUsuario" id="radioUsuario" value="O" <?php echo ("O" == $dadosUser["type"]) ? "checked" : "" ?>>Outro
+                    <input type="radio" <?php echo ("A" == $_SESSION["tipo"]) ? "" : "disabled" ?> name="radioUsuario" id="radioUsuario" value="O" <?php echo ("O" == $dadosUser["type"]) ? "checked" : "" ?>>Outro
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-sm-2 font-weight-bold col-form-label text-right" for="radioStatus">Status:</label>
                 <div class="col-sm-10">
-                    <input type="radio" name="radioStatus" id="radioStatus" value="A" <?php echo ("A" == $dadosUser["status"]) ? "checked" : "" ?>>Ativo
+                    <input type="radio" <?php echo ("A" == $_SESSION["tipo"]) ? "" : "disabled" ?> name="radioStatus" id="radioStatus" value="A" <?php echo ("A" == $dadosUser["status"]) ? "checked" : "" ?>>Ativo
                     &nbsp;&nbsp;&nbsp;
-                    <input type="radio" name="radioStatus" id="radioStatus" value="I" <?php echo ("I" == $dadosUser["status"]) ? "checked" : "" ?>>Inativo
+                    <input type="radio" <?php echo ("A" == $_SESSION["tipo"]) ? "" : "disabled" ?> name="radioStatus" id="radioStatus" value="I" <?php echo ("I" == $dadosUser["status"]) ? "checked" : "" ?>>Inativo
                 </div>
             </div>
             <div class="form-group row">

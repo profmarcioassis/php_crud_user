@@ -31,7 +31,7 @@ if (isset($_POST['txtEmail'])) {
         $mail->SMTPAuth = true;
         $mail->Port = 2525;
         $mail->Username = '9e6dd38ad8cd6c';
-        $mail->Password = '3a3c5328136086';
+        $mail->Password = '*******36086';
 
         $msg = array();
         $email = $conn->real_escape_string($_POST['txtEmail']);
@@ -82,7 +82,7 @@ if (isset($_POST['txtEmail'])) {
                         WHERE email = '$email'";
                     $sql_query = $conn->query($sql) or die($conn->error);
                     if ($sql_query) {
-                        $msg[] = "Uma nova senha foi enviada ao seu e-mail.";
+                        $msg[] = "Uma nova senha foi enviada ao seu e-mail.<br>Efetue o login e troque a senha!";
                     }
                 }
             }
@@ -108,21 +108,26 @@ if (isset($_POST['txtEmail'])) {
     <h2 class="text-center mt-5">Recuperar senha</h2>
 
     <?php
-    if (isset($msg) && $msg != '') {
+    if (isset($msg)) {
     ?>
         <div id="msg" class="text-center alert-warning p-md-3">
             <?php
             foreach ($msg as $value) {
                 echo $value;
             }
+
+
             ?>
         </div>
+        <?php
+        $msg = array();
+        ?>
         <script>
-            document.getElementById('txtUser').select();
-        </script>
+            setTimeout(function() {
+                window.close(); //fecha a janela depois de 6 segundos
+            }, 6000);
+        </script>";
     <?php
-        //deleta o valor da session erro
-        $msg = '';
     }
     ?>
     <div class="container">

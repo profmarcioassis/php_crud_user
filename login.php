@@ -37,7 +37,7 @@ if (isset($_POST['txtUser']) && strlen($_POST['txtUser'] > 0)) {
                 $_SESSION['usuario'] = $dados['user'];
                 $_SESSION['nome'] = $dados['name'];
                 $_SESSION['tipo'] = $dados['type'];
-                header("location: selecionarUsuario.php");
+                header("location: selecionarPessoa.php");
             }
         }else {
         $_SESSION['erro'][] = "Usuário não encontrado. Verifique seus dados e tente novamente!";

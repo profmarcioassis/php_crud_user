@@ -1,5 +1,5 @@
 <div class="align-middle" style="height: 50px; width: 100%; margin-top: 10px; padding-right: 10px; padding-top: 10px; background-color: silver; text-align: right;">
-    Bem-vindo(a): <b> <?php echo $_SESSION["nome"]; ?></b>
+    Bem-vindo(a): <b><a href="editarUsuario.php?iduser=<?php echo $_SESSION["iduser"]?>"><?php echo $_SESSION["nome"]; ?></a></b>
     &nbsp;&nbsp;<a href="sair.php" title="Logout" style="text-decoration: none;">Sair <i class="fa fa-sign-out"></i></a>
 </div>
 
@@ -19,13 +19,13 @@
 
                 </div>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="selecionarUsuario.php">Listar Usuários</a>
+            </li>
         <?php } ?>
 
         <li class="nav-item">
             <a class="nav-link" href="selecionarPessoa.php">Listar Pessoas</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="selecionarUsuario.php">Listar Usuários</a>
         </li>
 
         <li class="nav-item">
