@@ -22,10 +22,11 @@ if (isset($_POST['txtEmail'])) {
         $mail->Host = 'sandbox.smtp.mailtrap.io';
         $mail->SMTPAuth = true;
         $mail->Port = 2525;
-        $mail->Username = '9e6dd38ad8cd6c';
-        $mail->Password = '*******36086';
+        $mail->Username = '86eb807dc63e39';
+        $mail->Password = '**************';
 
         $msg = array();
+        $enviou = false;
         $email = $conn->real_escape_string($_POST['txtEmail']);
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $msg[] = "E-mail informado é inválido. ";
@@ -63,6 +64,7 @@ if (isset($_POST['txtEmail'])) {
                     $sql_query = $conn->query($sql) or die($conn->error);
                     if ($sql_query) {
                         $msg[] = "Uma nova senha foi enviada ao seu e-mail.<br>Efetue o login e troque a senha!";
+                        $enviou = true;
                     }
                 }
             }
@@ -101,6 +103,7 @@ if (isset($_POST['txtEmail'])) {
         </div>
         <?php
         $msg = array();
+        if ($enviou == true) {
         ?>
         <script>
             setTimeout(function() {
@@ -108,7 +111,8 @@ if (isset($_POST['txtEmail'])) {
             }, 6000);
         </script>";
     <?php
-    }
+        }
+}
     ?>
     <div class="container">
         <form action="" method="post" name="frmRecuperarSenha">
