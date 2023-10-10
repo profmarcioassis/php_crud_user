@@ -23,7 +23,7 @@ if (isset($_POST['txtEmail'])) {
         $mail->SMTPAuth = true;
         $mail->Port = 2525;
         $mail->Username = '86eb807dc63e39';
-        $mail->Password = '722702198c529f';
+        $mail->Password = '**************';
 
         $msg = array();
         $enviou = false;
