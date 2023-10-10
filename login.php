@@ -6,7 +6,7 @@ if (!isset($_SESSION)) {
 }
 //recebe os dados do form login
 
-if (isset($_POST['txtUser']) && strlen($_POST['txtUser'] > 0)) {
+if (isset($_POST['txtUser']) && strlen($_POST['txtUser']) > 0) {
     $_SESSION['usuario'] = $conn->real_escape_string($_POST['txtUser']);
     $_SESSION['senha'] = md5($_POST['txtPassword']);
     //cria o comando sql para buscar e validar o usuário

@@ -97,7 +97,7 @@ if (!isset($_SESSION)) {
                 <div class="form-group row">
                 <label class="col-sm-2 font-weight-bold col-form-label text-right" for="radioStatus">Status:</label>
                 <div class="col-sm-10">
-                    <input type="radio" name="radioStatus" id="radioStatus" value="A">Ativo
+                    <input type="radio" name="radioStatus" id="radioStatus" value="A" checked>Ativo
                     &nbsp;&nbsp;&nbsp;
                     <input type="radio" name="radioStatus" id="radioStatus" value="I">Inativo
                 </div>
